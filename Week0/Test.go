@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"golang.org/x/tour/wc"
 	"math"
 	"strings"
-	"code.google.com/p/go-tour/wc"
 	"golang.org/x/tour/pic"
 )
 
