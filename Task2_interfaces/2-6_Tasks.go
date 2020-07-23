@@ -77,12 +77,9 @@ func calcOrderPriceSaved() func (prod map[string]float32, order []string) float3
 
 func sortAccounts(accs map[string]float64){
 	keys := make([]string, 0, len(accs))
-	for k := range accs {
-		keys = append(keys, k)
-	}
-
 	values := make([]float64, 0, len(accs))
-	for _, v := range accs {
+	for k, v := range accs {
+		keys = append(keys, k)
 		values = append(values, v)
 	}
 
