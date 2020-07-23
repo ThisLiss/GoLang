@@ -45,10 +45,11 @@ func calcOrderPrice(prod map[string]float32, order []string) float32{
 func calcOrderPriceSaved() func (prod map[string]float32, order []string) float32{
 	var count = 0
 	var savedOrders = make([]SavedOrders, 1000)
-	var price float32
-	var isExists = false
 
 	return func(prod map[string]float32, order []string) float32 {
+
+		var price float32
+		var isExists = false
 
 		for j := range savedOrders {
 			if reflect.DeepEqual(savedOrders[j].orders,order) {
@@ -131,11 +132,13 @@ func main() {
 
 	//4: Сделать 1е, но у нас приходит несколько сотен таких списков заказов и мы хотим запоминать уже посчитанные заказы, чтобы если встречается такой же, то сразу говорить его цену без расчёта.
 	order2 := []string{"Бананы", "Мандарины", "Дошик куриный"}
+	order3 := []string{"Бананы", "Дошик куриный"}
 	saved := calcOrderPriceSaved()
 	fmt.Println()
 	fmt.Printf("Цена товаров: %v\n", saved(products, order))
 	fmt.Printf("Цена товаров: %v\n", saved(products, order2))
 	fmt.Printf("Цена товаров: %v\n", saved(products, order))
+	fmt.Printf("Цена товаров: %v\n", saved(products, order3))
 
 	//5: Сделать пользовательские аккаунты со счетом типа "вася: 300р, петя: 30000000р".
 	accounts := map[string]float64{
